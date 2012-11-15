@@ -7,16 +7,16 @@
 ;;;  M-x local-set-key <hit TAB> comint-dynamic-complete
 
 (when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
+  (defun flymake-pychecker-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
                        'flymake-create-temp-inplace))
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
-      (list "pyflakes" (list local-file))))
-
+      (list "epylint" (list local-file))))
   (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pyflakes-init)))
+               '("\\.py\\'" flymake-pychecker-init)))
+
 
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 (load-library "flymake-cursor")
@@ -37,7 +37,6 @@
                              ("^.\\{81\\}\\(.+\\)$" (0 'my-long-line-facee append))
 ;;                             ("[ \t]+$"      (0 'my-trailing-space-face append))
                              ))))))
-
 
 
 

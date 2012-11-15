@@ -4,13 +4,24 @@
 (setq emacs-dir "~/.emacs.d")
 (add-to-list 'load-path emacs-dir)
 
+(add-to-list 'load-path "~/.emacs.d/themes/")
+
+;highlight parentheses
+(show-paren-mode 1)
+
+;initiatilize and use color-theme
+(require 'color-theme)
+ (setq color-theme-is-global t)
+ (color-theme-calm-forest)
+
+
 (setq mac-option-modifier nil)		;for international chars like ü
 (setq mac-command-modifier 'meta)	;Command for emacs Meta
 (set-language-environment "UTF-8")
 
 ;;; Set PAGER and EDITOR so git doesn't complain: terminal is not fully functional
 (setenv "PAGER" "cat")
-(setenv "EDITOR" "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient")
+(setenv "EDITOR" "emacs")
 
 (server-start)
 
@@ -23,15 +34,15 @@
 (if (functionp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (functionp 'tool-bar-mode) (tool-bar-mode -1))
 (menu-bar-mode 0)
-(set-background-color "OldLace") ;"AntiqueWhite2"  "ivory2" "ivory3
+;;(set-background-color "OldLace") ;"AntiqueWhite2"  "ivory2" "ivory3
 ;; Linux shell output in yellow and white unreadable on OldLace background
 ;; Really should look at Solarized theme: http://ethanschoonover.com/solarized
-(setq ansi-color-names-vector
-      ;;default: ["black" "red" "green" "yellow" "blue" "magenta" "cyan" "white"]
-      ["black" "red" "green" "yellow4" "blue" "magenta" "cyan4" "gray50"])
+;(setq ansi-color-names-vector
+;      ;;default: ["black" "red" "green" "yellow" "blue" "magenta" "cyan" "white"]
+;      ["black" "red" "green" "yellow4" "blue" "magenta" "cyan4" "gray50"])
 
 (set-cursor-color "red")
-(set-face-font 'default "-apple-monaco-medium-r-normal--10-100-72-72-m-100-iso10646-1")
+;(set-face-font 'default "-apple-monaco-medium-r-normal--10-100-72-72-m-100-iso10646-1")
 ;;(set-face-font 'default "-apple-monaco-medium-r-normal--12-100-72-72-m-100-iso10646-1")
 (blink-cursor-mode 1)			;-1 off, 1 on
 (setq blink-cursor-interval 0.25)	;default is 0.5 seconds
@@ -125,7 +136,6 @@
 (load-directory-files emacs-dir "^init-.+el$")
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -143,6 +153,12 @@
  '(sql-sqlite-program "sqlite3" t)
  '(transient-mark-mode t)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
+ '(x-select-enable-clipboard t)
+
+(custom-set-faces
+'(flymake-errline ((((class color)) (:background "tomato" :foreground "black"))))
+'(flymake-warnline ((((class color)) (:background "LightBlue2" :foreground "black"))))) 
+
  ;;'(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
 
 
