@@ -9,6 +9,11 @@
 ;highlight parentheses
 (show-paren-mode 1)
 
+;window buffer switching
+(require 'windmove)
+(windmove-default-keybindings 'meta)
+
+
 ;initiatilize and use color-theme
 (require 'color-theme)
  (setq color-theme-is-global t)
