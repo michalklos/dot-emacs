@@ -1,0 +1,1 @@
+(require 'pig-mode)
